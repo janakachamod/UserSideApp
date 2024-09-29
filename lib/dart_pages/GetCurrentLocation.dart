@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 class GetCurrentLocation extends StatelessWidget {
   // Example hardcoded values for latitude and longitude
-  final double latitude = 37.7749;
-  final double longitude = -122.4194;
+  final double latitude = 6.6843;
+  final double longitude = 80.1139;
 
   const GetCurrentLocation({Key? key})
       : super(key: key); // Ensure const constructor

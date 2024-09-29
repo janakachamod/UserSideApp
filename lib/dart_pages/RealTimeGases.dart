@@ -49,7 +49,7 @@ class _RealTimeGasesState extends State<RealTimeGases> {
       });
     });
 
-    _dbRef.child('gases/NO2').onValue.listen((event) {
+    _dbRef.child('gases/NH4').onValue.listen((event) {
       DataSnapshot no2Snapshot = event.snapshot;
       print("NO2: ${no2Snapshot.value}");
       setState(() {

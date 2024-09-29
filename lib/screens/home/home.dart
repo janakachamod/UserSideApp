@@ -59,8 +59,8 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    final double latitude = 37.7749; // Example latitude value
-    final double longitude = -122.4194; // Example longitude value
+    final double latitude = 6.6843;
+    final double longitude = 80.1139; // -122.4194; // Example longitude value
 
     // Get the current date and month
     final now = DateTime.now();

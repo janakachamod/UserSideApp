@@ -37,9 +37,9 @@ class _GasPredictionState extends State<GasPrediction> {
       final data = event.snapshot.value as Map<dynamic, dynamic>?;
       if (data != null) {
         setState(() {
-          no2Controller.text = data['NO2']?.toString() ?? '';
+          no2Controller.text = data['NH4']?.toString() ?? '';
           coController.text = data['CO']?.toString() ?? '';
-          nh3Controller.text = data['NH4']?.toString() ?? '';
+          nh3Controller.text = data['NH3']?.toString() ?? '';
           tolueneController.text = data['Toluene']?.toString() ?? '';
         });
       }

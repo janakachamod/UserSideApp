@@ -64,7 +64,7 @@ class _AllGasesGraphPageState extends State<AllGasesGraphPage> {
       });
     });
 
-    _dbRef.child('gases/NO2').onValue.listen((event) {
+    _dbRef.child('gases/NH4').onValue.listen((event) {
       final double no2Value =
           event.snapshot.value is double ? event.snapshot.value as double : 0.0;
 

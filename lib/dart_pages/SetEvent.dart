@@ -16,13 +16,12 @@ class _SetEventState extends State<SetEvent> {
   @override
   void initState() {
     super.initState();
-    // Initialize the notifications
     _initializeNotifications();
   }
 
   void _initializeNotifications() {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('app_icon');
+        AndroidInitializationSettings('@mipmap/ic_launcher');
     const InitializationSettings initializationSettings =
         InitializationSettings(android: initializationSettingsAndroid);
 
@@ -32,15 +31,19 @@ class _SetEventState extends State<SetEvent> {
   Future<void> _scheduleNotification(
       String eventName, DateTime dateTime) async {
     var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
-        'event_reminder_channel', 'Medicare',
-        importance: Importance.max, priority: Priority.high, ticker: 'ticker');
+      'event_reminder_channel',
+      'Event Reminders',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+    );
 
     var platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);
 
     await flutterLocalNotificationsPlugin.schedule(
       0,
-      'Event Reminder',
+      'MediCare Events',
       eventName,
       dateTime,
       platformChannelSpecifics,
@@ -75,35 +78,37 @@ class _SetEventState extends State<SetEvent> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Set Event'),
+        backgroundColor: Colors.teal,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
+        // Wrapped the content in SingleChildScrollView
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
               controller: _eventNameController,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Event Name',
+                labelStyle: TextStyle(color: Colors.teal),
+                border: OutlineInputBorder(),
               ),
             ),
             const SizedBox(height: 20),
-            Row(
-              children: [
-                Text(
-                  _selectedDateTime != null
-                      ? DateFormat('yyyy-MM-dd HH:mm')
-                          .format(_selectedDateTime!)
-                      : 'No date/time selected',
-                ),
-                const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: _pickDateTime,
-                  child: const Text('Pick Date & Time'),
-                ),
-              ],
+            ElevatedButton.icon(
+              onPressed: _pickDateTime,
+              icon: const Icon(Icons.calendar_today),
+              label: Text(
+                _selectedDateTime == null
+                    ? 'Set Date & Time' // Placeholder when no date/time is selected
+                    : DateFormat('yyyy-MM-dd HH:mm').format(
+                        _selectedDateTime!), // Display date/time when selected
+              ),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.teal,
+              ),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             Center(
               child: ElevatedButton(
                 onPressed: () {
@@ -122,6 +127,12 @@ class _SetEventState extends State<SetEvent> {
                   }
                 },
                 child: const Text('Set Event'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.teal,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  textStyle: const TextStyle(fontSize: 18),
+                ),
               ),
             ),
           ],

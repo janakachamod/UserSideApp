@@ -1,5 +1,6 @@
 import 'package:crebrew/dart_pages/AllGasesGraphPage.dart';
 import 'package:crebrew/dart_pages/BPMGraphPage.dart';
+import 'package:crebrew/dart_pages/SetEvent.dart';
 import 'package:crebrew/dart_pages/UserProfile.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
@@ -119,6 +120,7 @@ class _HomeState extends State<Home> {
             _buildDrawerItem('BPM Recent Data Graph', BPMGraphPage()),
             _buildDrawerItem(
                 'All Gases Real Time Updates', AllGasesGraphPage()),
+            _buildDrawerItem('Set Reminders', SetEvent()),
             _buildDrawerItem('All BPM Data', StreamData()),
             _buildDrawerItem('All Gas Values Data', StreamGases()),
           ],
